@@ -4,17 +4,17 @@ import streamlit as st
 from chain import get_chain
 from langchain.embeddings.openai import OpenAIEmbeddings
 from streamlit import components
-from utils.snowflake import query_data_warehouse
+from utils.databricks import query_data_warehouse
 from langchain.vectorstores import FAISS
-from utils.snowddl import Snowddl
-from utils.snowchat_ui import reset_chat_history, extract_code, message_func, is_sql_query
+from utils.dbrxddl import Dbrxddl
+from utils.dbrxchat_ui import reset_chat_history, extract_code, message_func, is_sql_query
 
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 MAX_INPUTS = 3
 chat_history = []
 
 st.set_page_config(
-    page_title="snowChat",
+    page_title="Chat",
     page_icon="❄️",
     layout="centered",
     initial_sidebar_state="auto",
@@ -41,7 +41,8 @@ def load_chain():
     return get_chain(vectorstore)
 
 chain = load_chain()
-snow_ddl = Snowddl()
+# snow_ddl = Snowddl()
+dbrx_ddl = Dbrxddl()
 
 st.title("snowChat")
 st.caption("Talk your way through data")
@@ -57,9 +58,9 @@ st.sidebar.markdown(sidebar_content)
 
 # Create a sidebar with a dropdown menu
 selected_table = st.sidebar.selectbox(
-    "Select a table:", options=list(snow_ddl.ddl_dict.keys()))
+    "Select a table:", options=list(dbrx_ddl.ddl_dict.keys()))
 st.sidebar.markdown(f"### DDL for {selected_table} table")
-st.sidebar.code(snow_ddl.ddl_dict[selected_table], language="sql")
+st.sidebar.code(dbrx_ddl.ddl_dict[selected_table], language="sql")
 
 st.write(styles_content, unsafe_allow_html=True)
 

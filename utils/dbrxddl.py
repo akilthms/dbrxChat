@@ -1,6 +1,6 @@
-class Snowddl:
+class Dbrxddl:
     '''
-    Snowddl class loads DDL files for various tables in a database.
+    Dbrxddl class loads DDL files for various tables in a database.
     
     Attributes:
         ddl_dict (dict): dictionary of DDL files for various tables in a database.
@@ -14,11 +14,7 @@ class Snowddl:
     @staticmethod
     def load_ddls():
         ddl_files = {
-            "TRANSACTIONS": "sql/ddl_transactions.sql",
-            "ORDER_DETAILS": "sql/ddl_orders.sql",
-            "PAYMENTS": "sql/ddl_payments.sql",
-            "PRODUCTS": "sql/ddl_products.sql",
-            "CUSTOMER_DETAILS": "sql/ddl_customer.sql"
+            "HOME_SALES_BROOKLYN": "sql/ddl_sales.sql",
         }
 
         ddl_dict = {}
@@ -26,5 +22,3 @@ class Snowddl:
             with open(file_name, "r") as f:
                 ddl_dict[table_name] = f.read()
         return ddl_dict
-
-
