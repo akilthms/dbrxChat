@@ -6,7 +6,8 @@ from langchain.chains import (
     LLMChain
 )
 from langchain.chains.question_answering import load_qa_chain
-from langchain.llms import OpenAI
+# from langchain.llms import OpenAI
+from langchain.chat_models import ChatOpenAI
 import streamlit as st
 
 template = """Considering the provided chat history and a subsequent question, rewrite the follow-up question to be an independent query. Alternatively, conclude the conversation if it appears to be complete.
@@ -33,10 +34,10 @@ def get_chain(vectorstore):
     """
     Get a chain for chatting with a vector database.
     """
-    llm = OpenAI(temperature=0.08, openai_api_key=st.secrets["OPENAI_API_KEY"], model_name='gpt-3.5-turbo')
+    llm = ChatOpenAI(temperature=0.08, openai_api_key=st.secrets["OPENAI_API_KEY"], model_name='gpt-3.5-turbo')
     
-    streaming_llm = OpenAI(
-        model_name='gpt-4',
+    streaming_llm = ChatOpenAI(
+        model_name='gpt-3.5-turbo',
         streaming=False, # Not working yet
         callback_manager=CallbackManager([
             StreamingStdOutCallbackHandler()
