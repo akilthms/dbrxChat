@@ -15,13 +15,13 @@ chat_history = []
 
 st.set_page_config(
     page_title="Chat",
-    page_icon="❄️",
+    page_icon="🧱",
     layout="centered",
     initial_sidebar_state="auto",
     menu_items={
         'Report a bug': "https://github.com/kaarthik108/snowChat",
-        'About': '''snowChat is a chatbot designed to help you with Snowflake Database. It is built using OpenAI's GPT-4 and Streamlit. 
-            Go to the GitHub repo to learn more about the project. https://github.com/kaarthik108/snowChat 
+        'About': '''DbrxChat is a chatbot designed to help you with Snowflake Database. It is built using OpenAI's GPT-4 and Streamlit. 
+            Go to the GitHub repo to learn more about the project. https://github.com/akilthms/dbrxChat 
             '''
     }
 )
@@ -44,7 +44,7 @@ chain = load_chain()
 # snow_ddl = Snowddl()
 dbrx_ddl = Dbrxddl()
 
-st.title("snowChat")
+st.title("🧱DbrxChat")
 st.caption("Talk your way through data")
 
 with open("ui/sidebar.md", "r") as sidebar_file:
@@ -66,7 +66,7 @@ st.write(styles_content, unsafe_allow_html=True)
 
 if 'generated' not in st.session_state:
     st.session_state['generated'] = [
-        "Hey there, I'm Chatty McQueryFace, your SQL-speaking sidekick, ready to chat up Snowflake and fetch answers faster than a snowball fight in summer! ❄️🔍"]
+        "Hey there, I am your Databricks SQL AI Agent, your SQL-speaking sidekick, ready to chat up your Lakehouse and automatically fetch insights for you 🎣"]
 if 'past' not in st.session_state:
     st.session_state['past'] = ["Hey!"]
 if "input" not in st.session_state:
