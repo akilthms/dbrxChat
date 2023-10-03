@@ -10,6 +10,6 @@ DbrxChat is an intuitive and user-friendly application that allows you to intera
 
 Here are some example queries you can try with DbrxChat:
 
-- Show me top 5 customers by sales
-- What is the top 5 products? 
-- What is the period with the highest sales?
+- What are the top 5 customers by sales?
+- What is the top 5 products by sales?
+- What is the time period with the highest sales?

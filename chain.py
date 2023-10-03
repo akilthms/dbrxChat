@@ -27,6 +27,17 @@ If you don't know the answer, just say "Hmm, I'm not sure. I am trained only to 
 Question: {question}
 {context}
 Answer:"""  
+
+TEMPLATE = """ You're a senior SQL developer. You have to write sql code based on the following question.
+Give a one or two sentences about how did you arrive at that sql code. 
+Display the sql code in the code format (do not assume anything if the column is not available then say it is not available, do not make up code).
+
+
+Question: {question}
+{context}
+Answer:"""  
+
+
 QA_PROMPT = PromptTemplate(template=TEMPLATE, input_variables=["question", "context"])
 
 
