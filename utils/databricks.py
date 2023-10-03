@@ -28,7 +28,7 @@ cur = connection.cursor()
 # function - run sql query and return data
 def query_data_warehouse(sql: str, parameters=None) -> any:
     """
-    Executes snowflake sql query and returns result as data as dataframe.
+    Executes databricks sql query and returns result as data as dataframe.
     Example of parameters
     :param sql: sql query to be executed
     :param parameters: named parameters used in the sql query (defaulted as None)
@@ -44,9 +44,11 @@ def query_data_warehouse(sql: str, parameters=None) -> any:
         print(query, parameters)
         cur.execute(query, parameters)
         all_rows = cur.fetchall()
+        print("all_rows: ", all_rows)
         field_names = [i[0] for i in cur.description]
         
     except Exception as e:
+        print(e)
         return e
     
     finally:

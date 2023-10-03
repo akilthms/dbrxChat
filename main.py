@@ -19,8 +19,8 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="auto",
     menu_items={
-        'Report a bug': "https://github.com/kaarthik108/snowChat",
-        'About': '''DbrxChat is a chatbot designed to help you with Snowflake Database. It is built using OpenAI's GPT-4 and Streamlit. 
+        'Report a bug': "https://github.com/akilthms/dbrxChat",
+        'About': '''DbrxChat is a chatbot designed to help you with your Lakehouse. It is built using OpenAI's GPT-4 and Streamlit. 
             Go to the GitHub repo to learn more about the project. https://github.com/akilthms/dbrxChat 
             '''
     }
@@ -76,7 +76,7 @@ if "stored_session" not in st.session_state:
 
 if 'messages' not in st.session_state:
     st.session_state['messages'] = [
-        ("Hello! I'm a chatbot designed to help you with Snowflake Database.")]
+        ("Hello! I'm a chatbot designed to help you with Databricks Lakehouse.")]
 
 if "query_count" not in st.session_state:
     st.session_state["query_count"] = 0
@@ -145,8 +145,21 @@ def generate_df(to_extract: str):
 
     '''
     df = query_data_warehouse(to_extract)
+    print("generated df: ", df)
     st.dataframe(df, use_container_width=True)
 
+# def generate_viz(to_extract: str):
+#     result = chain(
+
+#         {"question": "Please visualize this query outputting only Matplotlib code", "chat_history": chat_history}
+
+#     )
+#     result = chain(
+
+#         {"question": "Please visualize this query outputting only Matplotlib code", "chat_history": chat_history}
+
+#     )
+#     st.pyplot(fig)
 
 with messages_container:
     if st.session_state['generated']:
@@ -154,12 +167,16 @@ with messages_container:
             message_func(st.session_state['past'][i], is_user=True)
             message_func(st.session_state["generated"][i])
             if i > 0 and is_sql_query(st.session_state["generated"][i]):
+                print("waiting to extract code!")
                 code = extract_code(st.session_state["generated"][i])
                 try:
+                    print("IS THE ISSUE HERE?")
                     if code:
                         generate_df(code)
-                except:  # noqa: E722
-                    pass
+                    print("GENERATED CODE: ", code)
+                except Exception as e:  # noqa: E722
+                    print("THIS CODE IS ERRORING!", e)
+                    
 
 if st.session_state['query_count'] == MAX_INPUTS and RESET:
     st.warning(

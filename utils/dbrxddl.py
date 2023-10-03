@@ -14,7 +14,7 @@ class Dbrxddl:
     @staticmethod
     def load_ddls():
         ddl_files = {
-            "HOME_SALES_BROOKLYN": "sql/ddl_sales.sql",
+            "INVOICE": "sql/ddl_invoice.sql",
         }
 
         ddl_dict = {}

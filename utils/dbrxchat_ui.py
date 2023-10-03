@@ -44,10 +44,10 @@ def reset_chat_history():
     '''
     This function is used to reset the chat history.
     '''
-    st.session_state['generated'] = ["Hey there, I'm Chatty McQueryFace, your SQL-speaking sidekick, ready to chat up Snowflake and fetch answers faster than a snowball fight in summer! ❄️🔍"]  
+    st.session_state['generated'] = ["Hey there, I am your Databricks SQL AI Agent, your SQL-speaking sidekick, ready to chat up your Lakehouse and automatically fetch insights for you 🎣"]  
     st.session_state['past'] = ["Hi..."]
     st.session_state["stored_session"] = []
-    st.session_state['messages'] = [("Hello! I'm a chatbot designed to help you with Snowflake Database.")]  
+    st.session_state['messages'] = [("Hello! I'm a chatbot designed to help you with Databricks Lakehouse.")]  
 
 
 # can be removed with better prompt
@@ -74,7 +74,7 @@ def extract_code(text) -> str:
 
     # Extract the SQL code from the response
     sql_code = response.choices[0].message.content
-
+    print("This is the sql extraction code: ", sql_code)
     return sql_code
 
 def is_sql_query(text: str) -> bool:
