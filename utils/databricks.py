@@ -44,9 +44,11 @@ def query_data_warehouse(sql: str, parameters=None) -> any:
         print(query, parameters)
         cur.execute(query, parameters)
         all_rows = cur.fetchall()
+        print("all_rows: ", all_rows)
         field_names = [i[0] for i in cur.description]
         
     except Exception as e:
+        print(e)
         return e
     
     finally:

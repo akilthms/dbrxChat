@@ -145,8 +145,21 @@ def generate_df(to_extract: str):
 
     '''
     df = query_data_warehouse(to_extract)
+    print("generated df: ", df)
     st.dataframe(df, use_container_width=True)
 
+# def generate_viz(to_extract: str):
+#     result = chain(
+
+#         {"question": "Please visualize this query outputting only Matplotlib code", "chat_history": chat_history}
+
+#     )
+#     result = chain(
+
+#         {"question": "Please visualize this query outputting only Matplotlib code", "chat_history": chat_history}
+
+#     )
+#     st.pyplot(fig)
 
 with messages_container:
     if st.session_state['generated']:
@@ -154,12 +167,16 @@ with messages_container:
             message_func(st.session_state['past'][i], is_user=True)
             message_func(st.session_state["generated"][i])
             if i > 0 and is_sql_query(st.session_state["generated"][i]):
+                print("waiting to extract code!")
                 code = extract_code(st.session_state["generated"][i])
                 try:
+                    print("IS THE ISSUE HERE?")
                     if code:
                         generate_df(code)
-                except:  # noqa: E722
-                    pass
+                    print("GENERATED CODE: ", code)
+                except Exception as e:  # noqa: E722
+                    print("THIS CODE IS ERRORING!", e)
+                    
 
 if st.session_state['query_count'] == MAX_INPUTS and RESET:
     st.warning(

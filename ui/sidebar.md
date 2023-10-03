@@ -10,7 +10,6 @@ DbrxChat is an intuitive and user-friendly application that allows you to intera
 
 Here are some example queries you can try with DbrxChat:
 
-- Show me a unique list of neighborhoods
-- Show me the total sales for each neighborhood.
-- Who are the top 10 neighborhood by sales_price?
-- What is the average order value for each block?
+- Show me top 5 customers by sales
+- What is the top 5 products? 
+- What is the period with the highest sales?

@@ -74,7 +74,7 @@ def extract_code(text) -> str:
 
     # Extract the SQL code from the response
     sql_code = response.choices[0].message.content
-
+    print("This is the sql extraction code: ", sql_code)
     return sql_code
 
 def is_sql_query(text: str) -> bool:
