@@ -19,8 +19,8 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="auto",
     menu_items={
-        'Report a bug': "https://github.com/kaarthik108/snowChat",
-        'About': '''DbrxChat is a chatbot designed to help you with Snowflake Database. It is built using OpenAI's GPT-4 and Streamlit. 
+        'Report a bug': "https://github.com/akilthms/dbrxChat",
+        'About': '''DbrxChat is a chatbot designed to help you with your Lakehouse. It is built using OpenAI's GPT-4 and Streamlit. 
             Go to the GitHub repo to learn more about the project. https://github.com/akilthms/dbrxChat 
             '''
     }
@@ -76,7 +76,7 @@ if "stored_session" not in st.session_state:
 
 if 'messages' not in st.session_state:
     st.session_state['messages'] = [
-        ("Hello! I'm a chatbot designed to help you with Snowflake Database.")]
+        ("Hello! I'm a chatbot designed to help you with Databricks Lakehouse.")]
 
 if "query_count" not in st.session_state:
     st.session_state["query_count"] = 0

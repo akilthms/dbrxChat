@@ -21,7 +21,7 @@ Standalone question:"""
  
 condense_question_prompt = PromptTemplate.from_template(template)
 
-TEMPLATE = """ You're a senior SQL developer. You have to write sql code in snowflake database based on the following question. Also you have to ignore the sql keywords and give a one or two sentences about how did you arrive at that sql code. display the sql code in the code format (do not assume anything if the column is not available then say it is not available, do not make up code).
+TEMPLATE = """ You're a senior SQL developer. You have to write sql code in Databricks based on the following question. Also you have to ignore the sql keywords and give a one or two sentences about how did you arrive at that sql code. display the sql code in the code format (do not assume anything if the column is not available then say it is not available, do not make up code).
 If you don't know the answer, just say "Hmm, I'm not sure. I am trained only to answer sql related queries. Please try again." Don't try to make up an answer.
 
 Question: {question}
